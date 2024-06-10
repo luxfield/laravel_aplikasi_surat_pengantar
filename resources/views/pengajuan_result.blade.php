@@ -44,88 +44,93 @@
                     @csrf()
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card card-primary">
-                                <div class="card-header">
-                                    <a href="{{ route('print.index',["id" => $getData->noreg]) }}" class="btn btn-success float-right">Cetak
-                                        Surat Pengantar</a>
-                                </div>
-                                <div class="card-body">
-                                    <input type="hidden" name="noreg" value="{{ $getData->noreg }}">
-                                    <div class="form-group">
-                                        <label for="nama">Name pemohon</label>
-                                        <input type="text" id="nama" name="nama" class="form-control"
-                                            value="{{ $getData->name }}" readonly>
+                            @if ($getData->status == "accept")
+                                <div class="card card-primary">
+                            @else
+                                <div class="card card-danger">
+                            @endif
+                                    <div class="card-header">
+                                        @if ($getData->status == "accept")
+                                            <a href="{{ route('print.index', ["id" => $getData->noreg]) }}"
+                                                class="btn btn-success float-right">Cetak
+                                                Surat Pengantar</a>
+                                        @endif
                                     </div>
-                                    <div class="form-group">
-                                        <label for="ttl">Tempat & Tanggal Lahir</label>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <input type="text" id="ttl_place" name="ttl_place" class="form-control"
-                                                    value="{{ $getData->ttl_tempat }}" readonly>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="date" id="ttl_date" name="ttl_date" class="form-control"
-                                                    value="{{ $getData->ttl_tahun }}" readonly>
+                                    <div class="card-body">
+                                        <input type="hidden" name="noreg" value="{{ $getData->noreg }}">
+                                        <div class="form-group">
+                                            <label for="nama">Name pemohon</label>
+                                            <input type="text" id="nama" name="nama" class="form-control"
+                                                value="{{ $getData->name }}" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="ttl">Tempat & Tanggal Lahir</label>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <input type="text" id="ttl_place" name="ttl_place"
+                                                        class="form-control" value="{{ $getData->ttl_tempat }}"
+                                                        readonly>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="date" id="ttl_date" name="ttl_date"
+                                                        class="form-control" value="{{ $getData->ttl_tahun }}" readonly>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputStatus">Jenis Kelamin</label>
-                                        <select id="inputStatus" name="jenis_kelamin" class="form-control custom-select"
-                                            readonly>
-                                            <option selected readonly>Pilih salah satu</option>
-                                            <option value="L">Laki - Laki</option>
-                                            <option value="P">Perempuan</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="agama">Agama</label>
-                                        <input type="text" id="agama" name="agama" class="form-control"
-                                            value="{{ $getData->agama }}" readonly>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="pekerjaan">Pekerjaan</label>
-                                        <input type="text" id="pekerjaan" name="pekerjaan" class="form-control"
-                                            value="{{ $getData->pekerjaan }}" readonly>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="ktp">No. KTP</label>
-                                        <input type="text" id="ktp" name="ktp" class="form-control"
-                                            value="{{ $getData->ktp }}" readonly>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="alamat">alamat</label>
-                                        <textarea id="alamat" class="form-control" name="alamat" rows="4"
-                                            readonly>{{ $getData->alamat }}</textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="keperluan">keperluan</label>
-                                        <textarea id="keperluan" class="form-control" name="keperluan" rows="4"
-                                            readonly>{{ $getData->keperluan }}</textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="summary">alasan di tolak / setuju</label>
-                                        <textarea id="summary" class="form-control" name="summary" rows="4"
-                                            readonly>{{$getSummary->summary ?? ""}}</textarea>
-                                    </div>
+                                        <div class="form-group">
+                                            <label for="jenis_kelamin">Jenis Kelamin</label>
+                                            <input type="text" id="jenis_kelamin" name="jenis_kelamin"
+                                                class="form-control" @if ($getData->gender == "L") value="laki-laki" @else
+                                                value="perempuan" @endif readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="agama">Agama</label>
+                                            <input type="text" id="agama" name="agama" class="form-control"
+                                                value="{{ $getData->agama }}" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pekerjaan">Pekerjaan</label>
+                                            <input type="text" id="pekerjaan" name="pekerjaan" class="form-control"
+                                                value="{{ $getData->pekerjaan }}" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="ktp">No. KTP</label>
+                                            <input type="text" id="ktp" name="ktp" class="form-control"
+                                                value="{{ $getData->ktp }}" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="alamat">alamat</label>
+                                            <textarea id="alamat" class="form-control" name="alamat" rows="4"
+                                                readonly>{{ $getData->alamat }}</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="keperluan">keperluan</label>
+                                            <textarea id="keperluan" class="form-control" name="keperluan" rows="4"
+                                                readonly>{{ $getData->keperluan }}</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="summary">alasan di tolak / setuju</label>
+                                            <textarea id="summary" class="form-control" name="summary" rows="4"
+                                                readonly>{{$getSummary->summary ?? ""}}</textarea>
+                                        </div>
 
+                                    </div>
+                                    <!-- /.card-body -->
                                 </div>
-                                <!-- /.card-body -->
+                                <!-- /.card -->
                             </div>
-                            <!-- /.card -->
+
                         </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="{{ route('login.homepage') }}" class="btn btn-secondary">Kembali</a>
 
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <a href="{{ route('login.homepage') }}" class="btn btn-secondary">Kembali</a>
-
-                            <!-- <button type="submit" value="accept" name="submit"
+                                <!-- <button type="submit" value="accept" name="submit"
                                 class="btn btn-success float-right ml-3">setuju</button>
                             <button type="submit" value="reject" name="submit"
                                 class="btn btn-danger float-right">tolak</button> -->
+                            </div>
                         </div>
-                    </div>
                 </form>
             </section>
             <!-- /.content -->

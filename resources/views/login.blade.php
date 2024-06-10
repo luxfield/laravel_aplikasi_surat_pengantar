@@ -10,6 +10,12 @@
                 <strong>{{ $message }}</strong>
             </div>
         @endif
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>{{ $message }}</strong>
+            </div>
+        @endif
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
                 <p class="h3">SISTEM INFORMASI SURAT
@@ -59,10 +65,10 @@
                 </form>
 
                 <p class="mb-1">
-                    <a href="forgot-password.html">I forgot my password</a>
+                    <a href="{{ route('forgotPassword') }}">I forgot my password</a>
                 </p>
                 <p class="mb-0">
-                    <a href="register.html" class="text-center">Register a new membership</a>
+                    <a href="{{ route('register') }}" class="text-center">Register a new membership</a>
                 </p>
             </div>
             <!-- /.card-body -->

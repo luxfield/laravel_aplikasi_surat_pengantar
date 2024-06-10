@@ -33,6 +33,12 @@ Route::resource('/', LoginController::class)->only([
             
         ]
     );
+Route::get('/register', [LoginController::class,'register'])->name('register');
+Route::post('/register', [LoginController::class,'doRegister'])->name('doRegister');
+Route::get('/forgot-password', [LoginController::class,'forgotPassword'])->name('forgotPassword');
+Route::post('/forgot-password', [LoginController::class,'doForgotPassword'])->name('doForgotPassword');
+Route::get('/recovery-password', [LoginController::class,'recoveryPassword'])->name('recoveryPassword');
+Route::post('/recovery-password', [LoginController::class,'doRecoveryPassword'])->name('doRecoveryPassword');
 Route::get('/logout',[LoginController::class,'logout'])->middleware(AuthLoginMiddleware::class)->name('login.logout');
 Route::get('/homepage', [HomepageController::class, 'index'])->middleware(AuthLoginMiddleware::class)->name('login.homepage');
 Route::get('/printSurat/{id}', [PrintSuratController::class, 'index'])->middleware(AuthLoginMiddleware::class)->name('print.index')->where('id', '.*');

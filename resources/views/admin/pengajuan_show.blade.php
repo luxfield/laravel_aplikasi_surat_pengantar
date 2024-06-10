@@ -68,13 +68,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputStatus">Jenis Kelamin</label>
-                                        <select id="inputStatus" name="jenis_kelamin" class="form-control custom-select"
+                                        <label for="jenis_kelamin">Jenis Kelamin</label>
+                                        <input type="text" id="jenis_kelamin" name="jenis_kelamin" class="form-control"
+                                            @if ($getData->gender == "L") value="laki-laki" @else value="perempuan" @endif
                                             readonly>
-                                            <option selected readonly>Pilih salah satu</option>
-                                            <option value="L">Laki - Laki</option>
-                                            <option value="P">Perempuan</option>
-                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="agama">Agama</label>
@@ -104,7 +101,8 @@
                                     <div class="form-group">
                                         <label for="summary">alasan di tolak / setuju</label>
                                         <textarea id="summary" class="form-control" name="summary" rows="4"
-                                            aria-required="harap diisi" required>{{$getSummary->summary ?? ""}}</textarea>
+                                            aria-required="harap diisi"
+                                            required>{{$getSummary->summary ?? ""}}</textarea>
                                     </div>
 
                                 </div>

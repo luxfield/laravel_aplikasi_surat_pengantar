@@ -29,8 +29,8 @@ class PrintSuratController extends Controller
                 ]);
                 return view("PrintSuratView", compact("judul", "noSurat", "getData", "getDataProses"));
             } else {
-                $getNoSuratSplit = explode("/", $getNoSurat);
-                dd($getNoSuratSplit[4]);
+                $getNoSuratSplit = explode("/", $getNoSurat->nosurat);
+                // dd($getNoSuratSplit[4]);
                 if ($getNoSuratSplit[4] == date("Y")) {
                     $getintnosurat = (int) $getNoSuratSplit[0];
                     ++$getintnosurat;

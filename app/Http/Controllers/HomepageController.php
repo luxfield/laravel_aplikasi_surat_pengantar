@@ -19,7 +19,7 @@ class HomepageController extends Controller
             return view('admin.homepage_index', compact('judul', 'getData','userloginname'));
         } else {
             $userloginname = $getUser->name;
-            $getData = DB::table('pengajuan')->orderByDesc('lastupdatedatetime')->get();
+            $getData = DB::table('pengajuan')->orderByDesc('lastupdatedatetime')->where('userid','=', $getUser->id)->get();
             return view('homepage', compact('judul', 'getData','userloginname'));
         }
     }

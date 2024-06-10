@@ -66,6 +66,7 @@ class PengajuanController extends Controller
         $lastupdatedDatetime = date("Y-m-d H:m:s");
 
         DB::table("pengajuan")->insert([
+            "userid" => Auth::user()->id,
             "noreg" => $noreg,
             "name" => $nama,
             "ttl_tempat" => $ttl_tempat,
@@ -97,13 +98,14 @@ class PengajuanController extends Controller
         $userloginname = Auth::user()->name;
         if (Auth::user()->role == "administrator") {
             $getSummary = DB::table("pengajuan_proses")->where("noreg", $id)->first();
-            return view("admin.pengajuan_show", compact("judul", "getData", "getSummary","userloginname"));
+            return view("admin.pengajuan_show", compact("judul", "getData", "getSummary", "userloginname"));
         } else {
             if (DB::table("pengajuan_proses")->where("noreg", $id)->get()->count() == 1) {
+                $getSummary = DB::table("pengajuan_proses")->where("noreg", $id)->first();
                 $judul = "cetak surat pengantar";
-                return view('pengajuan_result', compact("judul", "getData","userloginname"));
+                return view('pengajuan_result', compact("judul", "getData", "getSummary", "userloginname"));
             } else {
-                return view("pengajuan_show", compact("judul", "getData","userloginname"));
+                return view("pengajuan_show", compact("judul", "getData", "userloginname"));
             }
 
         }
@@ -121,9 +123,9 @@ class PengajuanController extends Controller
         $userloginname = Auth::user()->name;
         if (Auth::user()->role == "administrator") {
             $getSummary = DB::table("pengajuan_proses")->where("noreg", $id)->first();
-            return view("admin.pengajuan_show", compact("judul", "getData", "getSummary","userloginname"));
+            return view("admin.pengajuan_show", compact("judul", "getData", "getSummary", "userloginname"));
         } else {
-            return view("pengajuan_show", compact("judul", "getData","userloginname"));
+            return view("pengajuan_show", compact("judul", "getData", "userloginname"));
 
         }
     }

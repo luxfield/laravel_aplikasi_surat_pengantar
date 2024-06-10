@@ -52,7 +52,7 @@
 
                                     <div class="form-group">
                                         <label for="nama">Name</label>
-                                        <input type="text" id="nama" name="nama" class="form-control">
+                                        <input type="text" id="nama" name="nama" class="form-control" value="{{ $userloginname }}" readonly>
                                     </div>
                                     <div class="form-group">
                                         <label for="ttl">Tempat & Tanggal Lahir</label>
@@ -75,7 +75,15 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="agama">Agama</label>
-                                        <input type="text" id="agama" name="agama" class="form-control">
+                                        <select id="agama" name="agama" class="form-control custom-select">
+                                            <option selected disabled>Pilih salah satu</option>
+                                            <option value="islam">Islam</option>
+                                            <option value="kristen">kristen</option>
+                                            <option value="katolik">katolik</option>
+                                            <option value="hindu">hindu</option>
+                                            <option value="buddha">buddha</option>
+                                            <option value="konghucu">konghucu</option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="pekerjaan">Pekerjaan</label>

@@ -89,6 +89,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>Order ID</th>
+                                                    <th>Pemohon</th>
                                                     <th>Keperluan</th>
                                                     <th>Status</th>
                                                     <th>Tanggal pengajuan</th>
@@ -101,6 +102,7 @@
                                                         <td><a
                                                                 href="{{ route('pengajuan.show', ["id" => $data->noreg]) }}">{{ $data->noreg }}</a>
                                                         </td>
+                                                        <td>{{ $data->name }}</td>
                                                         <td>{{ $data->keperluan }}</td>
                                                         @if ($data->status == "pending")
                                                             <td><span class="badge badge-warning">{{ $data->status }}</span>
